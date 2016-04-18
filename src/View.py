@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'GUIStruktur.ui'
 #
-# Created: Thu Apr 14 00:39:37 2016
+# Created: Mon Apr 18 16:35:57 2016
 #      by: pyside-uic 0.2.15 running on PySide 1.2.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -15,6 +15,15 @@ class Ui_MainWindow(object):
         MainWindow.resize(800, 600)
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
+        self.gridLayoutWidget = QtGui.QWidget(self.centralwidget)
+        self.gridLayoutWidget.setGeometry(QtCore.QRect(0, 0, 801, 551))
+        self.gridLayoutWidget.setObjectName("gridLayoutWidget")
+        self.gridLayout = QtGui.QGridLayout(self.gridLayoutWidget)
+        self.gridLayout.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout.setObjectName("gridLayout")
+        self.textbox = QtGui.QTextEdit(self.gridLayoutWidget)
+        self.textbox.setObjectName("textbox")
+        self.gridLayout.addWidget(self.textbox, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 25))
@@ -23,8 +32,6 @@ class Ui_MainWindow(object):
         self.menuFile.setObjectName("menuFile")
         self.menuEdit = QtGui.QMenu(self.menubar)
         self.menuEdit.setObjectName("menuEdit")
-        self.menuWindows = QtGui.QMenu(self.menubar)
-        self.menuWindows.setObjectName("menuWindows")
         self.menuHelp = QtGui.QMenu(self.menubar)
         self.menuHelp.setObjectName("menuHelp")
         MainWindow.setMenuBar(self.menubar)
@@ -49,10 +56,8 @@ class Ui_MainWindow(object):
         self.menuFile.addAction(self.actionNew)
         self.menuFile.addSeparator()
         self.menuFile.addAction(self.actionClose)
-        self.menuEdit.addAction(self.actionCopy_CS)
         self.menubar.addAction(self.menuFile.menuAction())
         self.menubar.addAction(self.menuEdit.menuAction())
-        self.menubar.addAction(self.menuWindows.menuAction())
         self.menubar.addAction(self.menuHelp.menuAction())
 
         self.retranslateUi(MainWindow)
@@ -60,25 +65,29 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(
-            QtGui.QApplication.translate("MainWindow", "Wahlanalyse Weinb 5BHIT", None, QtGui.QApplication.UnicodeUTF8))
-        self.menuFile.setTitle(QtGui.QApplication.translate("MainWindow", "File", None, QtGui.QApplication.UnicodeUTF8))
-        self.menuEdit.setTitle(QtGui.QApplication.translate("MainWindow", "Edit", None, QtGui.QApplication.UnicodeUTF8))
-        self.menuWindows.setTitle(QtGui.QApplication.translate("MainWindow", "Windows", None, QtGui.QApplication.UnicodeUTF8))
-        self.menuHelp.setTitle(QtGui.QApplication.translate("MainWindow", "Help", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionOpen.setText(QtGui.QApplication.translate("MainWindow", "Open", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionOpen.setStatusTip(QtGui.QApplication.translate("MainWindow", "Open file ...", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionSave.setText(QtGui.QApplication.translate("MainWindow", "Save", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionSave.setToolTip(QtGui.QApplication.translate("MainWindow", "Save file ...", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionSave.setStatusTip(QtGui.QApplication.translate("MainWindow", "Save file ...", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionSave_as.setText(QtGui.QApplication.translate("MainWindow", "Save as", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionSave_as.setToolTip(QtGui.QApplication.translate("MainWindow", "Save file as ...", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionSave_as.setStatusTip(QtGui.QApplication.translate("MainWindow", "Save file as ...", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionNew.setText(QtGui.QApplication.translate("MainWindow", "New", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionNew.setStatusTip(QtGui.QApplication.translate("MainWindow", "Create new file ...", None, QtGui.QApplication.UnicodeUTF8))
+        MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Wahlanalyse Weinb 5BHIT", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuFile.setTitle(QtGui.QApplication.translate("MainWindow", "Datei", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuEdit.setTitle(QtGui.QApplication.translate("MainWindow", "Bearbeiten", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuHelp.setTitle(QtGui.QApplication.translate("MainWindow", "Hilfe", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionOpen.setText(QtGui.QApplication.translate("MainWindow", "Öffnen", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionOpen.setStatusTip(QtGui.QApplication.translate("MainWindow", "Datei öffnen ...", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionOpen.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+O", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionSave.setText(QtGui.QApplication.translate("MainWindow", "Speichern", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionSave.setToolTip(QtGui.QApplication.translate("MainWindow", "Datei speichern ...", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionSave.setStatusTip(QtGui.QApplication.translate("MainWindow", "Datei speichern ...", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionSave.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+S", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionSave_as.setText(QtGui.QApplication.translate("MainWindow", "Speichern unter", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionSave_as.setToolTip(QtGui.QApplication.translate("MainWindow", "Datei speichern unter ...", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionSave_as.setStatusTip(QtGui.QApplication.translate("MainWindow", "Datei speichern unter ...", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionSave_as.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Shift+S", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionNew.setText(QtGui.QApplication.translate("MainWindow", "Neu", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionNew.setStatusTip(QtGui.QApplication.translate("MainWindow", "Neue Datei anlegen ...", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionNew.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+N", None, QtGui.QApplication.UnicodeUTF8))
         self.actionCopy_CS.setText(QtGui.QApplication.translate("MainWindow", "Copy CS", None, QtGui.QApplication.UnicodeUTF8))
         self.actionCopy_CS.setStatusTip(QtGui.QApplication.translate("MainWindow", "Copy CS ...", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionClose.setText(QtGui.QApplication.translate("MainWindow", "Close", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionClose.setStatusTip(QtGui.QApplication.translate("MainWindow", "Close application ...", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionClose.setText(QtGui.QApplication.translate("MainWindow", "Beenden", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionClose.setIconText(QtGui.QApplication.translate("MainWindow", "Beenden", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionClose.setToolTip(QtGui.QApplication.translate("MainWindow", "Programm beenden ...", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionClose.setStatusTip(QtGui.QApplication.translate("MainWindow", "Programm beenden ...", None, QtGui.QApplication.UnicodeUTF8))
         self.actionClose.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Q", None, QtGui.QApplication.UnicodeUTF8))
 

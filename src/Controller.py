@@ -3,6 +3,7 @@ import sys
 from PySide.QtGui import *
 
 from src import View
+from src.CSVimport import *
 
 __author__ = 'Michael Weinberger'
 __date__ = 20160211
@@ -44,12 +45,23 @@ class Controller(QMainWindow):
         print("Copy CS")
 
     """
-        Open
+        Oeffnet eine CSV-Datei, und zeigt sie im Fenster an.
     """
     def open(self):
 
-        # Hier kommt der Methodeninhalt für Open!
-        print("Open")
+        datei = QFileDialog.getOpenFileName(self, caption="CSV-Datei öffnen...", filter="CSV-Datei (*.csv)")[0]
+
+        if datei is not "":
+            do = CSVimport(datei)
+            out = do.readcsv()
+
+            tmp = ""
+            for row in out:
+                tmp += str(row)
+                tmp += "<br><br>"
+
+            tmp += "Total rows: " + str(len(out))
+            self.Out.textbox.setText(tmp)
 
     """
         Save
