@@ -126,9 +126,15 @@ class Controller(QMainWindow):
         Loescht eine Zeile aus der Tabelle.
     """
     def delzeile(self):
-        if len(self.table.get_header()) != 0:
-            index = self.Out.tableView.selectionModel().selectedIndexes()[0]
-            self.table.removeRows(index, 1)
+
+        try:
+
+            if len(self.table.get_header()) != 0:
+                index = self.Out.tableView.selectionModel().selectedIndexes()[0]
+                self.table.removeRows(index.row(), 1)
+
+        except IndexError as e:
+            return
 
     """
         Aktualisiert die Tabellenansicht.
