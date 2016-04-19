@@ -1,6 +1,8 @@
 import sys
 
 from PySide.QtGui import *
+from src.CSVimport import *
+from src.Model import *
 from src import Model, CSVimport, View
 
 __author__ = 'Michael Weinberger'
@@ -23,7 +25,9 @@ class Controller(QMainWindow):
         self.Out.tableView.setSortingEnabled(True)
 
         self.datei = None
-        self.table = Model(datalist=[], header=[], parent=self)
+        self.table = Model.Model(datalist=[], header=["T", "WV", "WK", "BZ", "SPR", "WBER", "ABG", "UNG", "SPOE", "FPOE", "OEVP", "GRUE",
+                                   "NEOS",
+                                   "WWW", "ANDAS", "GFW", "SLP", "WIFF", "M", "FREIE"], parent=self)
 
         self.Out.actionNew.activated.connect(self.new)
         self.Out.actionOpen.activated.connect(self.open)
@@ -31,6 +35,7 @@ class Controller(QMainWindow):
         self.Out.actionSave_as.activated.connect(self.saveas)
         self.Out.actionKopieren_2.activated.connect(self.copy)
         self.Out.actionEinf_gen.activated.connect(self.paste)
+        self.Out.actionDelZeile.activated.connect(self.delzeile)
         self.Out.actionAusschneiden_2.activated.connect(self.cut)
         self.Out.actionDuplZeile.activated.connect(self.duplicate)
         self.Out.actionAddZeile.activated.connect(self.addzeile)
@@ -51,7 +56,7 @@ class Controller(QMainWindow):
 
         if datei:
             self.datei = datei
-            fields, header = CSVimport.readcsv(self.datei)
+            fields, header = CSVimport.CSVimport.readcsv(self.datei)
             self.refresh_table(fields, header)
 
     """
@@ -60,7 +65,7 @@ class Controller(QMainWindow):
     def save(self):
 
         if self.datei:
-            CSVimport.writecsv(self.datei, self.table.get_list())
+            CSVimport.CSVimport.writecsv(self.datei, self.table.get_list())
         else:
             self.saveas()
 
@@ -116,6 +121,14 @@ class Controller(QMainWindow):
     def addzeile(self):
         if len(self.table.get_header()) != 0:
             self.table.insertRows(self.table.rowCount(self), 1)
+
+    """
+        Loescht eine Zeile aus der Tabelle.
+    """
+    def delzeile(self):
+        if len(self.table.get_header()) != 0:
+            index = self.Out.tableView.selectionModel().selectedIndexes()[0]
+            self.table.removeRows(index, 1)
 
     """
         Aktualisiert die Tabellenansicht.

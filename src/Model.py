@@ -10,7 +10,10 @@ __version__ = 1.0
 """
     http://www.saltycrane.com/blog/2007/12/pyqt-43-qtableview-qabstracttablemodel/
 """
+
+
 class Model(QAbstractTableModel):
+
     def __init__(self, parent, datalist, header, *args):
         QAbstractTableModel.__init__(self, parent, *args)
         self.header = []
