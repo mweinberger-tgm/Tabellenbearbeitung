@@ -34,6 +34,7 @@ class Controller(QMainWindow):
         self.Out.actionKopieren_2.activated.connect(self.copy)
         self.Out.actionEinf_gen.activated.connect(self.paste)
         self.Out.actionAusschneiden_2.activated.connect(self.cut)
+        self.Out.actionDuplZeile.activated.connect(self.duplicate)
         self.Out.actionAddZeile.activated.connect(self.addzeile)
 
     """
@@ -112,7 +113,7 @@ class Controller(QMainWindow):
             self.Out.tableView.reset()
 
     """
-        Fuegt eine Zeile unterhalb der letzten Zelle zur Tabelle hinzu
+        Fuegt eine Zeile unterhalb der letzten Zelle zur Tabelle hinzu.
     """
     def addzeile(self):
         if len(self.table.get_header()) != 0:
@@ -125,6 +126,16 @@ class Controller(QMainWindow):
         self.table.set_list(fields, header)
         self.Out.tableView.reset()
         self.Out.tableView.setModel(self.table)
+
+    """
+        Dupliziert eine Zeil der Tabelle.
+    """
+    def duplicate(self):
+        if self.Out.tableView.selectionModel().selectedIndexes():
+
+            index = self.Out.tableView.selectionModel().selectedIndexes()[0]
+            self.table.duplicateRow(index.row())
+            self.Out.tableView.reset()
 
 """
     Starten des Programms
