@@ -121,6 +121,7 @@ class Controller(QMainWindow):
     def addzeile(self):
         if len(self.table.get_header()) != 0:
             self.table.insertRows(self.table.rowCount(self), 1)
+            self.Out.tableView.reset()
 
     """
         Loescht eine Zeile aus der Tabelle.
