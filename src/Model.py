@@ -1,6 +1,7 @@
 from PySide import QtCore
 from PySide.QtCore import QAbstractTableModel, Qt, QModelIndex, SIGNAL
 from natsort import natsorted
+from operator import itemgetter
 
 __author__ = 'Michael Weinberger'
 __date__ = 20160211

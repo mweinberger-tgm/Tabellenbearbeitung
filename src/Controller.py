@@ -57,16 +57,21 @@ class Controller(QMainWindow):
     """
     def save(self):
 
-        # Hier kommt der Methodeninhalt für Save!
-        print("Save")
+        if self.datei is not None:
+            CSVimport.writecsv(self.datei, self.table.get_list())
+        else:
+            self.saveas()
 
     """
         Save As
     """
     def saveas(self):
 
-        # Hier kommt der Methodeninhalt für Save as!
-        print("Save as")
+        datei = QFileDialog.getSaveFileName(self, caption="Als CSV-Datei speichern ...", dir=self.datei, filter="CSV-File (*.csv)")[0]
+
+        if len(datei) > 0:
+            self.datei = datei
+            self.save()
 
     def addzeile(self):
         if len(self.table.get_header()) != 0:
