@@ -1,9 +1,7 @@
 import sys
 
 from PySide.QtGui import *
-from src.Model import Model
-from src import View
-from src.CSVimport import *
+from src import Model, CSVimport, View
 
 __author__ = 'Michael Weinberger'
 __date__ = 20160211
