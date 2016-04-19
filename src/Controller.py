@@ -22,11 +22,10 @@ class Controller(QMainWindow):
         self.Out = View.Ui_MainWindow()
         self.Out.setupUi(self)
 
-        # self.view.tableView.setSortingEnabled(True)
-        # self.view.tableView.setItemDelegate(ItemDelegate(self.undoStack, self.set_undo_redo_text))
+        self.Out.tableView.setSortingEnabled(True)
 
         self.datei = None
-        self.table_model = Model(datalist=[], header=[], parent=self)
+        self.table = Model(datalist=[], header=[], parent=self)
 
         self.Out.actionNew.activated.connect(self.new)
         self.Out.actionOpen.activated.connect(self.open)
@@ -37,9 +36,8 @@ class Controller(QMainWindow):
         New
     """
     def new(self):
-
-        # Hier kommt der Methodeninhalt für New!
-        print("New")
+        self.filename = None
+        self.table.set_list([], [])
 
     """
         Copy CS
@@ -58,8 +56,8 @@ class Controller(QMainWindow):
 
         if datei is not '':
             self.datei = datei
-            datalist, header = CSVimport.readcsv(self.datei)
-            self.update_table_model(datalist, header)
+            fields, header = CSVimport.readcsv(self.datei)
+            self.refresh_table(fields, header)
 
     """
         Save
@@ -77,10 +75,10 @@ class Controller(QMainWindow):
         # Hier kommt der Methodeninhalt für Save as!
         print("Save as")
 
-    def update_table_model(self, data, header):
-        self.table_model.set_list(data, header)
+    def refresh_table(self, fields, header):
+        self.table.set_list(fields, header)
         self.Out.tableView.reset()
-        self.Out.tableView.setModel(self.table_model)
+        self.Out.tableView.setModel(self.table)
 
 """
     Starten des Programms

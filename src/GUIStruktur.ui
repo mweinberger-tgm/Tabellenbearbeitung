@@ -54,14 +54,27 @@
     <property name="title">
      <string>Bearbeiten</string>
     </property>
+    <addaction name="actionKopieren"/>
+    <addaction name="actionEinf_ge"/>
+    <addaction name="actionAusschneiden"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
      <string>Hilfe</string>
     </property>
    </widget>
+   <widget class="QMenu" name="menuTabelle">
+    <property name="title">
+     <string>Tabelle</string>
+    </property>
+    <addaction name="actionZeile_hinzuf_gen"/>
+    <addaction name="actionZeile_n_l_schen"/>
+    <addaction name="separator"/>
+    <addaction name="actionZeile_duplizieren"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
+   <addaction name="menuTabelle"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -138,6 +151,36 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionZeile_hinzuf_gen">
+   <property name="text">
+    <string>Zeile hinzufügen</string>
+   </property>
+  </action>
+  <action name="actionZeile_n_l_schen">
+   <property name="text">
+    <string>Zeile/-n löschen</string>
+   </property>
+  </action>
+  <action name="actionKopieren">
+   <property name="text">
+    <string>Kopieren</string>
+   </property>
+  </action>
+  <action name="actionEinf_ge">
+   <property name="text">
+    <string>Einfügen</string>
+   </property>
+  </action>
+  <action name="actionAusschneiden">
+   <property name="text">
+    <string>Ausschneiden</string>
+   </property>
+  </action>
+  <action name="actionZeile_duplizieren">
+   <property name="text">
+    <string>Zeile duplizieren</string>
    </property>
   </action>
  </widget>

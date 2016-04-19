@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'GUIStruktur.ui'
 #
-# Created: Tue Apr 19 07:13:23 2016
+# Created: Tue Apr 19 07:21:23 2016
 #      by: pyside-uic 0.2.15 running on PySide 1.2.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -34,6 +34,8 @@ class Ui_MainWindow(object):
         self.menuEdit.setObjectName("menuEdit")
         self.menuHelp = QtGui.QMenu(self.menubar)
         self.menuHelp.setObjectName("menuHelp")
+        self.menuTabelle = QtGui.QMenu(self.menubar)
+        self.menuTabelle.setObjectName("menuTabelle")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtGui.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -50,14 +52,34 @@ class Ui_MainWindow(object):
         self.actionCopy_CS.setObjectName("actionCopy_CS")
         self.actionClose = QtGui.QAction(MainWindow)
         self.actionClose.setObjectName("actionClose")
+        self.actionZeile_hinzuf_gen = QtGui.QAction(MainWindow)
+        self.actionZeile_hinzuf_gen.setObjectName("actionZeile_hinzuf_gen")
+        self.actionZeile_n_l_schen = QtGui.QAction(MainWindow)
+        self.actionZeile_n_l_schen.setObjectName("actionZeile_n_l_schen")
+        self.actionKopieren = QtGui.QAction(MainWindow)
+        self.actionKopieren.setObjectName("actionKopieren")
+        self.actionEinf_ge = QtGui.QAction(MainWindow)
+        self.actionEinf_ge.setObjectName("actionEinf_ge")
+        self.actionAusschneiden = QtGui.QAction(MainWindow)
+        self.actionAusschneiden.setObjectName("actionAusschneiden")
+        self.actionZeile_duplizieren = QtGui.QAction(MainWindow)
+        self.actionZeile_duplizieren.setObjectName("actionZeile_duplizieren")
         self.menuFile.addAction(self.actionOpen)
         self.menuFile.addAction(self.actionSave)
         self.menuFile.addAction(self.actionSave_as)
         self.menuFile.addAction(self.actionNew)
         self.menuFile.addSeparator()
         self.menuFile.addAction(self.actionClose)
+        self.menuEdit.addAction(self.actionKopieren)
+        self.menuEdit.addAction(self.actionEinf_ge)
+        self.menuEdit.addAction(self.actionAusschneiden)
+        self.menuTabelle.addAction(self.actionZeile_hinzuf_gen)
+        self.menuTabelle.addAction(self.actionZeile_n_l_schen)
+        self.menuTabelle.addSeparator()
+        self.menuTabelle.addAction(self.actionZeile_duplizieren)
         self.menubar.addAction(self.menuFile.menuAction())
         self.menubar.addAction(self.menuEdit.menuAction())
+        self.menubar.addAction(self.menuTabelle.menuAction())
         self.menubar.addAction(self.menuHelp.menuAction())
 
         self.retranslateUi(MainWindow)
@@ -69,6 +91,7 @@ class Ui_MainWindow(object):
         self.menuFile.setTitle(QtGui.QApplication.translate("MainWindow", "Datei", None, QtGui.QApplication.UnicodeUTF8))
         self.menuEdit.setTitle(QtGui.QApplication.translate("MainWindow", "Bearbeiten", None, QtGui.QApplication.UnicodeUTF8))
         self.menuHelp.setTitle(QtGui.QApplication.translate("MainWindow", "Hilfe", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuTabelle.setTitle(QtGui.QApplication.translate("MainWindow", "Tabelle", None, QtGui.QApplication.UnicodeUTF8))
         self.actionOpen.setText(QtGui.QApplication.translate("MainWindow", "Öffnen", None, QtGui.QApplication.UnicodeUTF8))
         self.actionOpen.setStatusTip(QtGui.QApplication.translate("MainWindow", "Datei öffnen ...", None, QtGui.QApplication.UnicodeUTF8))
         self.actionOpen.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+O", None, QtGui.QApplication.UnicodeUTF8))
@@ -90,4 +113,10 @@ class Ui_MainWindow(object):
         self.actionClose.setToolTip(QtGui.QApplication.translate("MainWindow", "Programm beenden ...", None, QtGui.QApplication.UnicodeUTF8))
         self.actionClose.setStatusTip(QtGui.QApplication.translate("MainWindow", "Programm beenden ...", None, QtGui.QApplication.UnicodeUTF8))
         self.actionClose.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Q", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionZeile_hinzuf_gen.setText(QtGui.QApplication.translate("MainWindow", "Zeile hinzufügen", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionZeile_n_l_schen.setText(QtGui.QApplication.translate("MainWindow", "Zeile/-n löschen", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionKopieren.setText(QtGui.QApplication.translate("MainWindow", "Kopieren", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionEinf_ge.setText(QtGui.QApplication.translate("MainWindow", "Einfügen", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionAusschneiden.setText(QtGui.QApplication.translate("MainWindow", "Ausschneiden", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionZeile_duplizieren.setText(QtGui.QApplication.translate("MainWindow", "Zeile duplizieren", None, QtGui.QApplication.UnicodeUTF8))
 
