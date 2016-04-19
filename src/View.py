@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'GUIStruktur.ui'
 #
-# Created: Mon Apr 18 16:35:57 2016
+# Created: Tue Apr 19 07:13:23 2016
 #      by: pyside-uic 0.2.15 running on PySide 1.2.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -21,9 +21,9 @@ class Ui_MainWindow(object):
         self.gridLayout = QtGui.QGridLayout(self.gridLayoutWidget)
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
         self.gridLayout.setObjectName("gridLayout")
-        self.textbox = QtGui.QTextEdit(self.gridLayoutWidget)
-        self.textbox.setObjectName("textbox")
-        self.gridLayout.addWidget(self.textbox, 0, 0, 1, 1)
+        self.tableView = QtGui.QTableView(self.gridLayoutWidget)
+        self.tableView.setObjectName("tableView")
+        self.gridLayout.addWidget(self.tableView, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 25))
