@@ -50,32 +50,26 @@
     <addaction name="separator"/>
     <addaction name="actionClose"/>
    </widget>
-   <widget class="QMenu" name="menuEdit">
-    <property name="title">
-     <string>Bearbeiten</string>
-    </property>
-    <addaction name="actionKopieren"/>
-    <addaction name="actionEinf_ge"/>
-    <addaction name="actionAusschneiden"/>
-   </widget>
-   <widget class="QMenu" name="menuHelp">
-    <property name="title">
-     <string>Hilfe</string>
-    </property>
-   </widget>
    <widget class="QMenu" name="menuTabelle">
     <property name="title">
      <string>Tabelle</string>
     </property>
-    <addaction name="actionZeile_hinzuf_gen"/>
-    <addaction name="actionZeile_n_l_schen"/>
+    <addaction name="actionAddZeile"/>
+    <addaction name="actionDelZeile"/>
     <addaction name="separator"/>
-    <addaction name="actionZeile_duplizieren"/>
+    <addaction name="actionDuplZeile"/>
+   </widget>
+   <widget class="QMenu" name="menuBearbeiten">
+    <property name="title">
+     <string>Bearbeiten</string>
+    </property>
+    <addaction name="actionKopieren_2"/>
+    <addaction name="actionEinf_gen"/>
+    <addaction name="actionAusschneiden_2"/>
    </widget>
    <addaction name="menuFile"/>
-   <addaction name="menuEdit"/>
    <addaction name="menuTabelle"/>
-   <addaction name="menuHelp"/>
+   <addaction name="menuBearbeiten"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionOpen">
@@ -153,14 +147,32 @@
     <string>Ctrl+Q</string>
    </property>
   </action>
-  <action name="actionZeile_hinzuf_gen">
+  <action name="actionAddZeile">
    <property name="text">
     <string>Zeile hinzufügen</string>
    </property>
+   <property name="statusTip">
+    <string>Hinzufügen einer neuen Zeile zur Tabelle ...</string>
+   </property>
+   <property name="whatsThis">
+    <string>Hinzufügen einer neuen Zeile zur Tabelle ...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+A</string>
+   </property>
   </action>
-  <action name="actionZeile_n_l_schen">
+  <action name="actionDelZeile">
    <property name="text">
     <string>Zeile/-n löschen</string>
+   </property>
+   <property name="statusTip">
+    <string>Löschen einer Zeile der Tabelle...</string>
+   </property>
+   <property name="whatsThis">
+    <string>Löschen einer Zeile der Tabelle...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+X</string>
    </property>
   </action>
   <action name="actionKopieren">
@@ -168,7 +180,7 @@
     <string>Kopieren</string>
    </property>
   </action>
-  <action name="actionEinf_ge">
+  <action name="actionEinf">
    <property name="text">
     <string>Einfügen</string>
    </property>
@@ -178,9 +190,60 @@
     <string>Ausschneiden</string>
    </property>
   </action>
-  <action name="actionZeile_duplizieren">
+  <action name="actionDuplZeile">
    <property name="text">
     <string>Zeile duplizieren</string>
+   </property>
+   <property name="statusTip">
+    <string>Duplizieren einer Zeile der Tabelle ...</string>
+   </property>
+   <property name="whatsThis">
+    <string>Duplizieren einer Zeile der Tabelle ...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+D</string>
+   </property>
+  </action>
+  <action name="actionKopieren_2">
+   <property name="text">
+    <string>Kopieren</string>
+   </property>
+   <property name="statusTip">
+    <string>Kopieren ...</string>
+   </property>
+   <property name="whatsThis">
+    <string>Kopieren ...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="actionEinf_gen">
+   <property name="text">
+    <string>Einfügen</string>
+   </property>
+   <property name="statusTip">
+    <string>Einfügen ...</string>
+   </property>
+   <property name="whatsThis">
+    <string>Einfügen ...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+V</string>
+   </property>
+  </action>
+  <action name="actionAusschneiden_2">
+   <property name="text">
+    <string>Ausschneiden</string>
+   </property>
+   <property name="statusTip">
+    <string>Ausschneiden...</string>
+   </property>
+   <property name="whatsThis">
+    <string>Ausschneiden...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
    </property>
   </action>
  </widget>

@@ -31,6 +31,7 @@ class Controller(QMainWindow):
         self.Out.actionOpen.activated.connect(self.open)
         self.Out.actionSave.activated.connect(self.save)
         self.Out.actionSave_as.activated.connect(self.saveas)
+        self.Out.actionAddZeile.activated.connect(self.addzeile)
 
     """
         New
@@ -38,14 +39,6 @@ class Controller(QMainWindow):
     def new(self):
         self.filename = None
         self.table.set_list([], [])
-
-    """
-        Copy CS
-    """
-    def copycs(self):
-
-        # Hier kommt der Methodeninhalt für Copy CS!
-        print("Copy CS")
 
     """
         Oeffnet eine CSV-Datei, und zeigt sie im Fenster an.
@@ -74,6 +67,10 @@ class Controller(QMainWindow):
 
         # Hier kommt der Methodeninhalt für Save as!
         print("Save as")
+
+    def addzeile(self):
+        if len(self.table.get_header()) != 0:
+            self.table.insertRows(self.table.rowCount(self), 1)
 
     def refresh_table(self, fields, header):
         self.table.set_list(fields, header)
