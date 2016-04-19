@@ -6,36 +6,29 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1284</width>
+    <height>759</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Wahlanalyse Weinb 5BHIT</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="gridLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>801</width>
-      <height>551</height>
-     </rect>
-    </property>
-    <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="0">
-      <widget class="QTableView" name="tableView"/>
-     </item>
-    </layout>
-   </widget>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QTableView" name="tableView"/>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>1284</width>
      <height>25</height>
     </rect>
    </property>
@@ -163,7 +156,7 @@
   </action>
   <action name="actionDelZeile">
    <property name="text">
-    <string>Zeile/-n löschen</string>
+    <string>Zeile löschen</string>
    </property>
    <property name="statusTip">
     <string>Löschen einer Zeile der Tabelle...</string>

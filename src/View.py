@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'GUIStruktur.ui'
 #
-# Created: Tue Apr 19 08:37:01 2016
+# Created: Tue Apr 19 09:14:03 2016
 #      by: pyside-uic 0.2.15 running on PySide 1.2.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,21 +12,18 @@ from PySide import QtCore, QtGui
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(800, 600)
+        MainWindow.resize(1284, 759)
         self.centralwidget = QtGui.QWidget(MainWindow)
+        self.centralwidget.setAutoFillBackground(False)
         self.centralwidget.setObjectName("centralwidget")
-        self.gridLayoutWidget = QtGui.QWidget(self.centralwidget)
-        self.gridLayoutWidget.setGeometry(QtCore.QRect(0, 0, 801, 551))
-        self.gridLayoutWidget.setObjectName("gridLayoutWidget")
-        self.gridLayout = QtGui.QGridLayout(self.gridLayoutWidget)
-        self.gridLayout.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout = QtGui.QGridLayout(self.centralwidget)
         self.gridLayout.setObjectName("gridLayout")
-        self.tableView = QtGui.QTableView(self.gridLayoutWidget)
+        self.tableView = QtGui.QTableView(self.centralwidget)
         self.tableView.setObjectName("tableView")
         self.gridLayout.addWidget(self.tableView, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 25))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1284, 25))
         self.menubar.setObjectName("menubar")
         self.menuFile = QtGui.QMenu(self.menubar)
         self.menuFile.setObjectName("menuFile")
@@ -119,7 +116,7 @@ class Ui_MainWindow(object):
         self.actionAddZeile.setStatusTip(QtGui.QApplication.translate("MainWindow", "Hinzufügen einer neuen Zeile zur Tabelle ...", None, QtGui.QApplication.UnicodeUTF8))
         self.actionAddZeile.setWhatsThis(QtGui.QApplication.translate("MainWindow", "Hinzufügen einer neuen Zeile zur Tabelle ...", None, QtGui.QApplication.UnicodeUTF8))
         self.actionAddZeile.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Shift+A", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionDelZeile.setText(QtGui.QApplication.translate("MainWindow", "Zeile/-n löschen", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionDelZeile.setText(QtGui.QApplication.translate("MainWindow", "Zeile löschen", None, QtGui.QApplication.UnicodeUTF8))
         self.actionDelZeile.setStatusTip(QtGui.QApplication.translate("MainWindow", "Löschen einer Zeile der Tabelle...", None, QtGui.QApplication.UnicodeUTF8))
         self.actionDelZeile.setWhatsThis(QtGui.QApplication.translate("MainWindow", "Löschen einer Zeile der Tabelle...", None, QtGui.QApplication.UnicodeUTF8))
         self.actionDelZeile.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Shift+X", None, QtGui.QApplication.UnicodeUTF8))
