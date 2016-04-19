@@ -33,6 +33,7 @@ class Controller(QMainWindow):
         self.Out.actionSave_as.activated.connect(self.saveas)
         self.Out.actionKopieren_2.activated.connect(self.copy)
         self.Out.actionEinf_gen.activated.connect(self.paste)
+        self.Out.actionAusschneiden_2.activated.connect(self.cut)
         self.Out.actionAddZeile.activated.connect(self.addzeile)
 
     """
@@ -95,6 +96,19 @@ class Controller(QMainWindow):
             clipboard = QApplication.clipboard()
             index = self.Out.tableView.selectionModel().selectedIndexes()[0]
             self.table.setData(index, str(clipboard.text()))
+            self.Out.tableView.reset()
+
+    """
+        Schneidet den Wert einer Zelle aus und legt in in der Zwischenablage ab.
+    """
+    def cut(self):
+        if self.Out.tableView.selectionModel().selectedIndexes():
+
+            clipboard = QApplication.clipboard()
+            index = self.Out.tableView.selectionModel().selectedIndexes()[0]
+            value = str(self.table.data(index))
+            clipboard.setText(value)
+            self.table.setData(index, '')
             self.Out.tableView.reset()
 
     """
