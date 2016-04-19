@@ -31,6 +31,7 @@ class Controller(QMainWindow):
         self.Out.actionOpen.activated.connect(self.open)
         self.Out.actionSave.activated.connect(self.save)
         self.Out.actionSave_as.activated.connect(self.saveas)
+        self.Out.actionKopieren_2.activated.connect(self.copy)
         self.Out.actionAddZeile.activated.connect(self.addzeile)
 
     """
@@ -72,6 +73,17 @@ class Controller(QMainWindow):
         if datei:
             self.datei = datei
             self.save()
+
+    """
+        Kopiert eine Zelle in die Zwischenablage.
+    """
+    def copy(self):
+        if self.Out.tableView.selectionModel().selectedIndexes():
+
+            clipboard = QApplication.clipboard()
+            index = self.Out.tableView.selectionModel().selectedIndexes()[0]
+            value = str(self.table.data(index))
+            clipboard.setText(value)
 
     """
         Fuegt eine Zeile unterhalb der letzten Zelle zur Tabelle hinzu
