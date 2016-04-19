@@ -34,7 +34,7 @@ class Controller(QMainWindow):
         self.Out.actionAddZeile.activated.connect(self.addzeile)
 
     """
-        New
+        Anlegen einer neuen Tabelle.
     """
     def new(self):
         self.filename = None
@@ -47,36 +47,42 @@ class Controller(QMainWindow):
 
         datei = QFileDialog.getOpenFileName(self, caption="CSV-Datei öffnen...", filter="CSV-Datei (*.csv)")[0]
 
-        if datei is not '':
+        if datei:
             self.datei = datei
             fields, header = CSVimport.readcsv(self.datei)
             self.refresh_table(fields, header)
 
     """
-        Save
+        Speichert die Tabelle als CSV-Datei ab, unter dem verwendeten Dateinamen.
     """
     def save(self):
 
-        if self.datei is not None:
+        if self.datei:
             CSVimport.writecsv(self.datei, self.table.get_list())
         else:
             self.saveas()
 
     """
-        Save As
+        Speichert die Tabelle als neue CSV-Datei mit unterschiedlichen Attributen ab.
     """
     def saveas(self):
 
         datei = QFileDialog.getSaveFileName(self, caption="Als CSV-Datei speichern ...", dir=self.datei, filter="CSV-File (*.csv)")[0]
 
-        if len(datei) > 0:
+        if datei:
             self.datei = datei
             self.save()
 
+    """
+        Fuegt eine Zeile unterhalb der letzten Zelle zur Tabelle hinzu
+    """
     def addzeile(self):
         if len(self.table.get_header()) != 0:
             self.table.insertRows(self.table.rowCount(self), 1)
 
+    """
+        Aktualisiert die Tabellenansicht.
+    """
     def refresh_table(self, fields, header):
         self.table.set_list(fields, header)
         self.Out.tableView.reset()

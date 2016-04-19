@@ -62,7 +62,6 @@ class Model(QAbstractTableModel):
 
     def setData(self, *args, **kwargs):
         self.list[args[0].row()][self.header[args[0].column()]] = args[1]
-        # self.emit(SIGNAL("dataChanged()"))
         return True
 
     def headerData(self, col, orientation, role):

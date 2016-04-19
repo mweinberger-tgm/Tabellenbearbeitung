@@ -8,7 +8,7 @@ Eine einfache Klasse, die ein beliebiges CSV-File ausliest
 class CSVimport(object):
 
     """
-    Liest das gewuenschte CSV-File aus und liefert es als Liste inkl. Header zurueck.
+        Liest das gewuenschte CSV-File aus und liefert es als Liste inkl. Header zurueck.
     """
     @staticmethod
     def readcsv(filename):
@@ -29,8 +29,11 @@ class CSVimport(object):
 
             return lines, lines_reader.fieldnames
 
+    """
+        Speichert die Tabelle als CSV-Datei unter dem mitgelieferten Namen ab.
+    """
     @staticmethod
-    def writecsv(filename, lines, delimiter = ';'):
+    def writecsv(filename, lines, delimiter=';'):
 
         with open(filename, 'w') as f:
 
