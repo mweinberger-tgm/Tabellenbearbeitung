@@ -32,6 +32,7 @@ class Controller(QMainWindow):
         self.Out.actionSave.activated.connect(self.save)
         self.Out.actionSave_as.activated.connect(self.saveas)
         self.Out.actionKopieren_2.activated.connect(self.copy)
+        self.Out.actionEinf_gen.activated.connect(self.paste)
         self.Out.actionAddZeile.activated.connect(self.addzeile)
 
     """
@@ -84,6 +85,17 @@ class Controller(QMainWindow):
             index = self.Out.tableView.selectionModel().selectedIndexes()[0]
             value = str(self.table.data(index))
             clipboard.setText(value)
+
+    """
+        Fuegt den Inhalt der Zwischenablage ein.
+    """
+    def paste(self):
+        if self.Out.tableView.selectionModel().selectedIndexes():
+
+            clipboard = QApplication.clipboard()
+            index = self.Out.tableView.selectionModel().selectedIndexes()[0]
+            self.table.setData(index, str(clipboard.text()))
+            self.Out.tableView.reset()
 
     """
         Fuegt eine Zeile unterhalb der letzten Zelle zur Tabelle hinzu
