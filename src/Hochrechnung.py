@@ -22,6 +22,6 @@ class Hochrechnung(QDialog):
         layout.addWidget(self.view)
 
         self.setWindowTitle(title)
-        self.resize(500, 400)
+        self.resize(500, 100)
         self.setModal(True)
         self.exec_()
