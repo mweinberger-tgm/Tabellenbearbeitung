@@ -17,8 +17,8 @@
    <property name="autoFillBackground">
     <bool>false</bool>
    </property>
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
      <widget class="QTableView" name="tableView"/>
     </item>
    </layout>
@@ -60,9 +60,19 @@
     <addaction name="actionEinf_gen"/>
     <addaction name="actionAusschneiden_2"/>
    </widget>
+   <widget class="QMenu" name="menuHochrechnung">
+    <property name="title">
+     <string>Hochrechnung</string>
+    </property>
+    <addaction name="actionDBsave"/>
+    <addaction name="actionDBread"/>
+    <addaction name="separator"/>
+    <addaction name="actionResults"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuTabelle"/>
    <addaction name="menuBearbeiten"/>
+   <addaction name="menuHochrechnung"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionOpen">
@@ -237,6 +247,48 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+X</string>
+   </property>
+  </action>
+  <action name="actionDBsave">
+   <property name="text">
+    <string>In Datenbank speichern</string>
+   </property>
+   <property name="statusTip">
+    <string>Tabelle in Datenbank speichern...</string>
+   </property>
+   <property name="whatsThis">
+    <string>Tabelle in Datenbank speichern...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+1</string>
+   </property>
+  </action>
+  <action name="actionDBread">
+   <property name="text">
+    <string>Aus Datenbank lesen</string>
+   </property>
+   <property name="statusTip">
+    <string>Tabelle aus Datenbank lesen...</string>
+   </property>
+   <property name="whatsThis">
+    <string>Tabelle aus Datenbank lesen...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+2</string>
+   </property>
+  </action>
+  <action name="actionResults">
+   <property name="text">
+    <string>Wahlergebnisse anzeigen</string>
+   </property>
+   <property name="statusTip">
+    <string>Anzeigen des Wahlergebnisses, resultierend aus den Erhebungsdaten...</string>
+   </property>
+   <property name="whatsThis">
+    <string>Anzeigen des Wahlergebnisses, resultierend aus den Erhebungsdaten...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+3</string>
    </property>
   </action>
  </widget>

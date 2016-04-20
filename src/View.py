@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'GUIStruktur.ui'
 #
-# Created: Tue Apr 19 09:14:03 2016
+# Created: Wed Apr 20 20:02:31 2016
 #      by: pyside-uic 0.2.15 running on PySide 1.2.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -16,11 +16,11 @@ class Ui_MainWindow(object):
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setAutoFillBackground(False)
         self.centralwidget.setObjectName("centralwidget")
-        self.gridLayout = QtGui.QGridLayout(self.centralwidget)
-        self.gridLayout.setObjectName("gridLayout")
+        self.horizontalLayout = QtGui.QHBoxLayout(self.centralwidget)
+        self.horizontalLayout.setObjectName("horizontalLayout")
         self.tableView = QtGui.QTableView(self.centralwidget)
         self.tableView.setObjectName("tableView")
-        self.gridLayout.addWidget(self.tableView, 0, 0, 1, 1)
+        self.horizontalLayout.addWidget(self.tableView)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1284, 25))
@@ -31,6 +31,8 @@ class Ui_MainWindow(object):
         self.menuTabelle.setObjectName("menuTabelle")
         self.menuBearbeiten = QtGui.QMenu(self.menubar)
         self.menuBearbeiten.setObjectName("menuBearbeiten")
+        self.menuHochrechnung = QtGui.QMenu(self.menubar)
+        self.menuHochrechnung.setObjectName("menuHochrechnung")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtGui.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -65,6 +67,12 @@ class Ui_MainWindow(object):
         self.actionEinf_gen.setObjectName("actionEinf_gen")
         self.actionAusschneiden_2 = QtGui.QAction(MainWindow)
         self.actionAusschneiden_2.setObjectName("actionAusschneiden_2")
+        self.actionDBsave = QtGui.QAction(MainWindow)
+        self.actionDBsave.setObjectName("actionDBsave")
+        self.actionDBread = QtGui.QAction(MainWindow)
+        self.actionDBread.setObjectName("actionDBread")
+        self.actionResults = QtGui.QAction(MainWindow)
+        self.actionResults.setObjectName("actionResults")
         self.menuFile.addAction(self.actionOpen)
         self.menuFile.addAction(self.actionSave)
         self.menuFile.addAction(self.actionSave_as)
@@ -78,9 +86,14 @@ class Ui_MainWindow(object):
         self.menuBearbeiten.addAction(self.actionKopieren_2)
         self.menuBearbeiten.addAction(self.actionEinf_gen)
         self.menuBearbeiten.addAction(self.actionAusschneiden_2)
+        self.menuHochrechnung.addAction(self.actionDBsave)
+        self.menuHochrechnung.addAction(self.actionDBread)
+        self.menuHochrechnung.addSeparator()
+        self.menuHochrechnung.addAction(self.actionResults)
         self.menubar.addAction(self.menuFile.menuAction())
         self.menubar.addAction(self.menuTabelle.menuAction())
         self.menubar.addAction(self.menuBearbeiten.menuAction())
+        self.menubar.addAction(self.menuHochrechnung.menuAction())
 
         self.retranslateUi(MainWindow)
         QtCore.QObject.connect(self.actionClose, QtCore.SIGNAL("triggered()"), MainWindow.close)
@@ -91,6 +104,7 @@ class Ui_MainWindow(object):
         self.menuFile.setTitle(QtGui.QApplication.translate("MainWindow", "Datei", None, QtGui.QApplication.UnicodeUTF8))
         self.menuTabelle.setTitle(QtGui.QApplication.translate("MainWindow", "Tabelle", None, QtGui.QApplication.UnicodeUTF8))
         self.menuBearbeiten.setTitle(QtGui.QApplication.translate("MainWindow", "Bearbeiten", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuHochrechnung.setTitle(QtGui.QApplication.translate("MainWindow", "Hochrechnung", None, QtGui.QApplication.UnicodeUTF8))
         self.actionOpen.setText(QtGui.QApplication.translate("MainWindow", "Öffnen", None, QtGui.QApplication.UnicodeUTF8))
         self.actionOpen.setStatusTip(QtGui.QApplication.translate("MainWindow", "Datei öffnen ...", None, QtGui.QApplication.UnicodeUTF8))
         self.actionOpen.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+O", None, QtGui.QApplication.UnicodeUTF8))
@@ -139,4 +153,16 @@ class Ui_MainWindow(object):
         self.actionAusschneiden_2.setStatusTip(QtGui.QApplication.translate("MainWindow", "Ausschneiden...", None, QtGui.QApplication.UnicodeUTF8))
         self.actionAusschneiden_2.setWhatsThis(QtGui.QApplication.translate("MainWindow", "Ausschneiden...", None, QtGui.QApplication.UnicodeUTF8))
         self.actionAusschneiden_2.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+X", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionDBsave.setText(QtGui.QApplication.translate("MainWindow", "In Datenbank speichern", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionDBsave.setStatusTip(QtGui.QApplication.translate("MainWindow", "Tabelle in Datenbank speichern...", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionDBsave.setWhatsThis(QtGui.QApplication.translate("MainWindow", "Tabelle in Datenbank speichern...", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionDBsave.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+1", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionDBread.setText(QtGui.QApplication.translate("MainWindow", "Aus Datenbank lesen", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionDBread.setStatusTip(QtGui.QApplication.translate("MainWindow", "Tabelle aus Datenbank lesen...", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionDBread.setWhatsThis(QtGui.QApplication.translate("MainWindow", "Tabelle aus Datenbank lesen...", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionDBread.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+2", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionResults.setText(QtGui.QApplication.translate("MainWindow", "Wahlergebnisse anzeigen", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionResults.setStatusTip(QtGui.QApplication.translate("MainWindow", "Anzeigen des Wahlergebnisses, resultierend aus den Erhebungsdaten...", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionResults.setWhatsThis(QtGui.QApplication.translate("MainWindow", "Anzeigen des Wahlergebnisses, resultierend aus den Erhebungsdaten...", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionResults.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+3", None, QtGui.QApplication.UnicodeUTF8))
 
