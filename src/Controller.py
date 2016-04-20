@@ -169,7 +169,12 @@ class Controller(QMainWindow):
         Liest den Inhalt aus der Datenbank, und stellt die gespeicherte Tabelle im Fenster dar.
     """
     def dbread(self):
-        print("Read!")
+
+        try:
+            fields, header = self.db.load()
+            self.refresh_table(fields, header)
+        except Exception as e:
+            print(e)
 
     """
         Speichert die aktuelle Tabelle als Zwischenstand der Auszaehlung in die Datenbank.

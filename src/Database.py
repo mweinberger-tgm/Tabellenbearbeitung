@@ -12,13 +12,12 @@ class DBHandler:
 
     def __init__(self, database, username, password):
         self.connector = MySQLDBConnector(database, username, password)
-        self.wahltermin = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
+        self.wahltermin = str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d'))
 
     def write(self, datalist):
 
         session = self.connector.get_session()
 
-        # delete previous data
         session.execute("DELETE FROM Stimmabgabe")
         session.execute("DELETE FROM Sprengel")
         session.execute("DELETE FROM Wahl")
@@ -56,6 +55,7 @@ class DBHandler:
         session.commit()
 
     def load(self):
+
         session = self.connector.get_session()
 
         query = "SELECT Wahlkreis.wahlkreisnr, Bezirk.bezirknr, Sprengel.sprengelnr, Sprengel.wahlberechtigte, " \
@@ -94,7 +94,7 @@ class DBHandler:
     def projection(self):
 
         termin = self.wahltermin
-        zeitpunkt = datetime.now().time().strftime("%H:%M:%S")
+        zeitpunkt = datetime.datetime.now().time().strftime("%H:%M:%S")
 
         connection = self.connector.get_raw_connection()
         cursor = connection.cursor()
@@ -117,16 +117,15 @@ class DBHandler:
 
         return datalist, header
 
+
 class DBConnect(metaclass=ABCMeta):
+
     def __init__(self, connection_string):
         db = connection_string
         self.engine = create_engine(db)
         conn = self.engine.connect()
-        # create declarative base class
         Base = automap_base()
-        # create declarative classes from dbms
         Base.prepare(self.engine, reflect=True)
-        # create references for all reflected tables wahl = Base.classes.wahl
         self.session = Session(self.engine)
         self.classes = Base.classes
 
