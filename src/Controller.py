@@ -29,6 +29,11 @@ class Controller(QMainWindow):
                                    "NEOS",
                                    "WWW", "ANDAS", "GFW", "SLP", "WIFF", "M", "FREIE"], parent=self)
 
+        try:
+            self.db = DBAccess("wahlanalyse", "insy", "insy", "2016-03-18")
+        except Exception as e:
+            print("Es konnte keine Verbindung zur Datenbank hergestellt werden.")
+
         self.Out.actionNew.activated.connect(self.new)
         self.Out.actionOpen.activated.connect(self.open)
         self.Out.actionSave.activated.connect(self.save)
@@ -47,7 +52,7 @@ class Controller(QMainWindow):
         Anlegen einer neuen Tabelle.
     """
     def new(self):
-        self.filename = None
+        self.datei = None
         self.table.set_list([], [])
 
     """
@@ -168,7 +173,14 @@ class Controller(QMainWindow):
         Speichert die aktuelle Tabelle als Zwischenstand der Auszaehlung in die Datenbank.
     """
     def dbsave(self):
-        print("Write!")
+
+        if self.datei or len(self.table.get_list()) is not 0:
+
+            try:
+                rawdata = self.table.get_list()
+                self.db.write_from_csv_list(current_list)
+            except Exception as e:
+                print(e)
 
     """
         Gibt die Hochrechnung aus allen gespeicherten Tabellen aus.
