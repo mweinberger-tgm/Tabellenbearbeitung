@@ -4,14 +4,17 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from orderedset._orderedset import OrderedSet
+import datetime
+import time
 
 
-class DBAccess:
-    def __init__(self, database, username, password, wahltermin):
+class DBHandler:
+
+    def __init__(self, database, username, password):
         self.connector = MySQLDBConnector(database, username, password)
-        self.wahltermin = wahltermin
+        self.wahltermin = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
 
-    def write_from_csv_list(self, datalist):
+    def write(self, datalist):
 
         session = self.connector.get_session()
 
@@ -52,7 +55,7 @@ class DBAccess:
 
         session.commit()
 
-    def load_into_csv_list(self):
+    def load(self):
         session = self.connector.get_session()
 
         query = "SELECT Wahlkreis.wahlkreisnr, Bezirk.bezirknr, Sprengel.sprengelnr, Sprengel.wahlberechtigte, " \
@@ -88,7 +91,7 @@ class DBAccess:
 
         return datalist, list(header)
 
-    def create_results(self):
+    def projection(self):
 
         termin = self.wahltermin
         zeitpunkt = datetime.now().time().strftime("%H:%M:%S")
@@ -114,7 +117,7 @@ class DBAccess:
 
         return datalist, header
 
-class DBConnector(metaclass=ABCMeta):
+class DBConnect(metaclass=ABCMeta):
     def __init__(self, connection_string):
         db = connection_string
         self.engine = create_engine(db)
@@ -137,7 +140,7 @@ class DBConnector(metaclass=ABCMeta):
         return getattr(self.classes, entity)
 
 
-class MySQLDBConnector(DBConnector):
+class MySQLDBConnector(DBConnect):
     def __init__(self, database, username, password):
         connection_string = "mysql+mysqldb://" + username + ":" + password + "@localhost/" + database + "?charset=utf8"
         super().__init__(connection_string)

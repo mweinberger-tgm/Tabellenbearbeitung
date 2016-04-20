@@ -3,7 +3,9 @@ import sys
 from PySide.QtGui import *
 from src.CSVimport import *
 from src.Model import *
-from src import Model, CSVimport, View
+from src.Database import *
+from src import Model, CSVimport, View, Database
+from PySide import QtGui
 
 __author__ = 'Michael Weinberger'
 __date__ = 20160211
@@ -30,7 +32,7 @@ class Controller(QMainWindow):
                                    "WWW", "ANDAS", "GFW", "SLP", "WIFF", "M", "FREIE"], parent=self)
 
         try:
-            self.db = DBAccess("wahlanalyse", "insy", "insy", "2016-03-18")
+            self.db = DBHandler("wahlanalyse", "insy", "insy")
         except Exception as e:
             print("Es konnte keine Verbindung zur Datenbank hergestellt werden.")
 
@@ -178,7 +180,8 @@ class Controller(QMainWindow):
 
             try:
                 rawdata = self.table.get_list()
-                self.db.write_from_csv_list(current_list)
+                self.db.write(rawdata)
+                QtGui.QMessageBox.question(self, 'Wahlanalyse Weinb 5BHIT', "Speichervorgang erfolgreich", QtGui.QMessageBox.Ok)
             except Exception as e:
                 print(e)
 
