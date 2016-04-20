@@ -39,6 +39,9 @@ class Controller(QMainWindow):
         self.Out.actionAusschneiden_2.activated.connect(self.cut)
         self.Out.actionDuplZeile.activated.connect(self.duplicate)
         self.Out.actionAddZeile.activated.connect(self.addzeile)
+        self.Out.actionDBread.activated.connect(self.dbread)
+        self.Out.actionDBsave.activated.connect(self.dbsave)
+        self.Out.actionResults.activated.connect(self.results)
 
     """
         Anlegen einer neuen Tabelle.
@@ -154,6 +157,24 @@ class Controller(QMainWindow):
             index = self.Out.tableView.selectionModel().selectedIndexes()[0]
             self.table.duplicateRow(index.row())
             self.Out.tableView.reset()
+
+    """
+        Liest den Inhalt aus der Datenbank, und stellt die gespeicherte Tabelle im Fenster dar.
+    """
+    def dbread(self):
+        print("Read!")
+
+    """
+        Speichert die aktuelle Tabelle als Zwischenstand der Auszaehlung in die Datenbank.
+    """
+    def dbsave(self):
+        print("Write!")
+
+    """
+        Gibt die Hochrechnung aus allen gespeicherten Tabellen aus.
+    """
+    def results(self):
+        print("Results!")
 
 """
     Starten des Programms
