@@ -2,10 +2,10 @@ import sys
 
 from PySide.QtGui import *
 from src.CSVimport import *
+from src.Hochrechnung import *
 from src.Model import *
 from src.Database import *
-from src import Model, CSVimport, View, Database
-from PySide import QtGui
+from src import Model, CSVimport, View
 
 __author__ = 'Michael Weinberger'
 __date__ = 20160211
@@ -194,7 +194,9 @@ class Controller(QMainWindow):
         Gibt die Hochrechnung aus allen gespeicherten Tabellen aus.
     """
     def results(self):
-        print("Results!")
+
+        fields, header = self.db.projection()
+        Hochrechnung(fields, header, "Hochrechnungsergebnis - Wahlanalyse Weinb 5BHIT")
 
 """
     Starten des Programms
