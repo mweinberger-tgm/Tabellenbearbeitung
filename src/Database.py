@@ -22,7 +22,7 @@ class DBHandler:
     """
         Speichert die angezeigte Tabelle in die Datenbank.
     """
-    def write(self, datalist):
+    def write(self, rawdata):
 
         session = self.connector.get_session()
         session.execute("DELETE FROM Stimmabgabe")
@@ -36,12 +36,12 @@ class DBHandler:
         Sprengel = self.connector.get_class("Sprengel")
         Stimmabgabe = self.connector.get_class("Stimmabgabe")
 
-        parties = []
-        for key in datalist[0].keys():
+        parteien = []
+        for key in rawdata[0].keys():
             if key not in ["SPR", "BZ", "WBER", "ABG", "UNG", "T", "WV", "WK"]:
-                parties.append(key)
+                parteien.append(key)
 
-        for line in datalist:
+        for line in rawdata:
             sprengel = Sprengel(sprengelnr=int(line["SPR"]),
                                 bezirknr=int(line["BZ"]),
                                 termin=wahl.termin,
@@ -50,12 +50,12 @@ class DBHandler:
                                 ungueltige=int(line["UNG"]),
                                 )
             session.add(sprengel)
-            for party in parties:
+            for partei in parteien:
                 stimmabgabe = Stimmabgabe(sprengelnr=int(line["SPR"]),
                                           bezirknr=int(line["BZ"]),
                                           termin=wahl.termin,
-                                          abkuerzung=party,
-                                          anzahl=int(line[party])
+                                          abkuerzung=partei,
+                                          anzahl=int(line[partei])
                                           )
                 session.add(stimmabgabe)
 
@@ -72,26 +72,26 @@ class DBHandler:
         result = session.execute(query).fetchall()
 
         header = OrderedSet(["WK", "BZ", "SPR", "WBER", "ABG", "UNG"])
-        datalist = []
+        rawdata = []
         line = {}
-        first_party = None
+        erste_partei = None
         for i in range(0, len(result)):
-            current_party = result[i]["abkuerzung"]
-            if first_party is None or current_party == first_party:
+            aktuelle_partei = result[i]["abkuerzung"]
+            if erste_partei is None or aktuelle_partei == erste_partei:
                 if line:
-                    datalist.append(line)
+                    rawdata.append(line)
                 line = {}
-                first_party = current_party
+                erste_partei = aktuelle_partei
                 line["WK"] = result[i]["wahlkreisnr"]
                 line["BZ"] = result[i]["bezirknr"]
                 line["SPR"] = result[i]["sprengelnr"]
                 line["WBER"] = result[i]["wahlberechtigte"]
                 line["ABG"] = result[i]["abgegebene"]
                 line["UNG"] = result[i]["ungueltige"]
-            line[current_party] = result[i]["anzahl"]
-            header.add(current_party)
+            line[aktuelle_partei] = result[i]["anzahl"]
+            header.add(aktuelle_partei)
 
-        return datalist, list(header)
+        return rawdata, list(header)
 
     """
         Erstellt eine Hochrechnung auf Basis der Rohdaten in der Datenbank.
@@ -114,13 +114,13 @@ class DBHandler:
 
         line = {}
         header = []
-        datalist = []
+        rawdata = []
         for i in range(0, len(result)):
             line[result[i]["abkuerzung"]] = result[i]["prozent"]
             header.append(result[i]["abkuerzung"])
-        datalist.append(line)
+        rawdata.append(line)
 
-        return datalist, header
+        return rawdata, header
 
 """
     Die Verbindungsschnittstelle.
