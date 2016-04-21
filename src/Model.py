@@ -8,6 +8,7 @@ __date__ = 20160211
 __version__ = 1.0
 
 """
+    Quelle:
     http://www.saltycrane.com/blog/2007/12/pyqt-43-qtableview-qabstracttablemodel/
 """
 

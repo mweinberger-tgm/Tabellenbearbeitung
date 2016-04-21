@@ -7,17 +7,24 @@ from orderedset._orderedset import OrderedSet
 import datetime
 import time
 
+"""
+    Zustaendig fuer Lese- und Schreiboperationen in der Datenbank.
 
+    Quelle:
+    http://www.tutorialspoint.com/python/python_database_access.htm
+"""
 class DBHandler:
 
     def __init__(self, database, username, password):
         self.connector = MySQLDBConnector(database, username, password)
         self.wahltermin = str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d'))
 
+    """
+        Speichert die angezeigte Tabelle in die Datenbank.
+    """
     def write(self, datalist):
 
         session = self.connector.get_session()
-
         session.execute("DELETE FROM Stimmabgabe")
         session.execute("DELETE FROM Sprengel")
         session.execute("DELETE FROM Wahl")
@@ -54,6 +61,9 @@ class DBHandler:
 
         session.commit()
 
+    """
+        Liest die in der Datenbank gespeicherten Rohdaten aus, und zeigt sie in der GUI an.
+    """
     def load(self):
 
         session = self.connector.get_session()
@@ -91,6 +101,9 @@ class DBHandler:
 
         return datalist, list(header)
 
+    """
+        Erstellt eine Hochrechnung auf Basis der Rohdaten in der Datenbank.
+    """
     def projection(self):
 
         termin = self.wahltermin
@@ -117,7 +130,9 @@ class DBHandler:
 
         return datalist, header
 
-
+"""
+    Die Verbindungsschnittstelle.
+"""
 class DBConnect(metaclass=ABCMeta):
 
     def __init__(self, connection_string):
@@ -138,7 +153,9 @@ class DBConnect(metaclass=ABCMeta):
     def get_class(self, entity):
         return getattr(self.classes, entity)
 
-
+"""
+    Die Verbindungsschnittstelle zur MySQL-Datenbank.
+"""
 class MySQLDBConnector(DBConnect):
     def __init__(self, database, username, password):
         connection_string = "mysql+mysqldb://" + username + ":" + password + "@localhost/" + database + "?charset=utf8"

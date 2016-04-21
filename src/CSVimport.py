@@ -1,7 +1,10 @@
 from csv import *
 
 """
-Eine einfache Klasse, die ein beliebiges CSV-File ausliest
+    Eine einfache Klasse, die ein beliebiges CSV-File ausliest
+
+    Quelle:
+    https://docs.python.org/2/library/csv.html
 """
 
 
