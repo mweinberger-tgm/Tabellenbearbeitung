@@ -68,15 +68,7 @@ class DBHandler:
 
         session = self.connector.get_session()
 
-        query = "SELECT Wahlkreis.wahlkreisnr, Bezirk.bezirknr, Sprengel.sprengelnr, Sprengel.wahlberechtigte, " \
-                "Sprengel.abgegebene, Sprengel.ungueltige, Stimmabgabe.abkuerzung, Stimmabgabe.anzahl " \
-                "FROM Wahlkreis " \
-                "INNER JOIN Bezirk ON Wahlkreis.wahlkreisnr = Bezirk.wahlkreisnr " \
-                "INNER JOIN Sprengel ON Bezirk.bezirknr = Sprengel.bezirknr " \
-                "AND Sprengel.termin = '" + self.wahltermin + "' " \
-                                                              "INNER JOIN Stimmabgabe ON Stimmabgabe.termin = '" + self.wahltermin + "' " \
-                                                                                                                                     "AND Stimmabgabe.Bezirknr = Bezirk.bezirknr " \
-                                                                                                                                     "AND Stimmabgabe.sprengelnr = Sprengel.sprengelnr;"
+        query = "SELECT Wahlkreis.wahlkreisnr, Bezirk.bezirknr, Sprengel.sprengelnr, Sprengel.wahlberechtigte, Sprengel.abgegebene, Sprengel.ungueltige, Stimmabgabe.abkuerzung, Stimmabgabe.anzahl FROM Wahlkreis INNER JOIN Bezirk ON Wahlkreis.wahlkreisnr = Bezirk.wahlkreisnr INNER JOIN Sprengel ON Bezirk.bezirknr = Sprengel.bezirknr AND Sprengel.termin = '" + self.wahltermin + "' INNER JOIN Stimmabgabe ON Stimmabgabe.termin = '" + self.wahltermin + "' AND Stimmabgabe.Bezirknr = Bezirk.bezirknr AND Stimmabgabe.sprengelnr = Sprengel.sprengelnr;"
         result = session.execute(query).fetchall()
 
         header = OrderedSet(["WK", "BZ", "SPR", "WBER", "ABG", "UNG"])
